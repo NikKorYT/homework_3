@@ -1,7 +1,10 @@
 def caching_fibonacci():
+    """Returns a function that calculates the nth Fibonacci number using a cache.
+    """
     cache = {}
     
     def fibonacci(n):
+        """Calculates the nth Fibonacci number."""
         if n <= 0:
             return 0
         if n == 1:
