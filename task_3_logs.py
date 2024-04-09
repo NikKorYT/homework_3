@@ -60,9 +60,7 @@ def filter_logs_by_level(logs: list, level: str) -> list:
     Filters the logs by the given log level.
     """
     filtered_logs = []
-    for log in logs:
-        if log["log_level"] == level:
-            filtered_logs.append(log)
+    filtered_logs = filter(lambda log: log["log_level"] == level, logs)
     return filtered_logs
 
 def count_logs_by_level(logs: list) -> dict:
