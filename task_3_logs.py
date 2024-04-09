@@ -1,5 +1,6 @@
 import sys
 
+
 def input_taker() -> tuple:
     """
     This function takes the input as an console argument from the user.
@@ -14,9 +15,11 @@ def input_taker() -> tuple:
     elif len(sys.argv) == 3:
         file_path = sys.argv[1]
         log_level = sys.argv[2].upper()
-        
+
         if log_level not in ["INFO", "DEBUG", "ERROR", "WARNING"]:
-            print("Please provide the correct log level. It should be one of Info, Debug, Error or Warning.")
+            print(
+                "Please provide the correct log level. It should be one of Info, Debug, Error or Warning."
+            )
             return sys.exit(1)
 
     else:
@@ -63,6 +66,7 @@ def filter_logs_by_level(logs: list, level: str) -> list:
     filtered_logs = filter(lambda log: log["log_level"] == level, logs)
     return filtered_logs
 
+
 def count_logs_by_level(logs: list) -> dict:
     """
     Counts the number of logs for each log level.
@@ -83,6 +87,7 @@ def display_log_counts(counts: dict):
         print("{:<17} | {:<10}".format(level, count))
     print("\n")
 
+
 def display_one_type_logs(logs: list, level: str):
     print(f"Details of logs for the '{level}' level:")
     for log in logs:
@@ -93,18 +98,15 @@ def main():
     file_path, log_level = input_taker()
     lines = load_logs(file_path)
     parsed_lines = []
-    
+
     for line in lines:
         parsed_line = parse_log_line(line)
         parsed_lines.append(parsed_line)
-        
-        
+
     display_log_counts(count_logs_by_level(parsed_lines))
-    
+
     if log_level:
         display_one_type_logs(filter_logs_by_level(parsed_lines, log_level), log_level)
-            
-    
 
 
 if __name__ == "__main__":
