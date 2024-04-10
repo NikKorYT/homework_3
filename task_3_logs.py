@@ -51,12 +51,14 @@ def parse_log_line(line: str) -> dict:
     """
     Parses a single log line and returns a dictionary with the keys date, time, log_level and log_message.
     """
-    parsed_line = {"date": None, "time": None, "log_level": None, "log_message": None}
+    split_line = lambda x: line.split()[x]
 
-    parsed_line["date"] = line.split()[0]
-    parsed_line["time"] = line.split()[1]
-    parsed_line["log_level"] = line.split()[2]
-    parsed_line["log_message"] = " ".join(line.split()[3:])
+    parsed_line = {
+        "date": split_line(0),
+        "time": split_line(1),
+        "log_level": split_line(2),
+        "log_message": " ".join(line.split()[3:]),
+    }
 
     return parsed_line
 
