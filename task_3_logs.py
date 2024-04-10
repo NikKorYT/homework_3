@@ -67,8 +67,8 @@ def filter_logs_by_level(logs: list, level: str) -> list:
     """
     Filters the logs by the given log level.
     """
-    filtered_logs = []
-    filtered_logs = filter(lambda log: log["log_level"] == level, logs)
+    filtered_logs = list(filter(lambda log: log["log_level"] == level, logs))
+    
     return filtered_logs
 
 
