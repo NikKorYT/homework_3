@@ -42,6 +42,9 @@ def load_logs(file_path: str) -> list:
     except FileNotFoundError:
         print("File not found. Please provide the correct path.")
         return sys.exit(1)
+    except UnicodeDecodeError:
+        print("File format is not correct. Please provide the correct file format.")
+        return sys.exit(1)
 
 
 def parse_log_line(line: str) -> dict:
